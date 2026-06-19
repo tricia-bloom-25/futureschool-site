@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Case — Futureschool Collaborative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal-deep:#1A3B42;
+  --teal-mid:#1B6879;
+  --teal-mid-hover:#155666;
+  --sky:#8EB5DC;
+  --white:#FFFFFF;
+  --off-white:#F4F2EE;
+  --olive:#54554C;
+  --olive-light:#7a7a72;
+  --ember:#D2421D;
+  --burgundy:#9B0A0A;
+  --amber:#FFB71C;
+  --rule:rgba(26,59,66,0.1);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.65;color:var(--olive);background:var(--white);-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(26,59,66,0.96);backdrop-filter:blur(8px);border-bottom:0.5px solid rgba(255,255,255,0.08);padding:0 3rem;display:flex;justify-content:space-between;align-items:center;height:60px}
+.wordmark{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--white);letter-spacing:-0.01em;text-decoration:none}
+.wordmark em{font-style:italic;color:var(--sky);font-weight:400}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.15s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{color:var(--white)!important;background:var(--teal-mid)!important;padding:0.6rem 1.4rem;transition:background 0.15s!important}
+.nav-cta:hover{background:var(--teal-mid-hover)!important}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0.5rem;margin-left:auto}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,0.7);transition:transform 0.2s,opacity 0.2s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(26,59,66,0.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--sans);font-weight:500;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:1.1rem 1.5rem;border-bottom:0.5px solid rgba(255,255,255,0.06);transition:color 0.15s}
+.mobile-menu a:hover{color:var(--white)}
+.mobile-menu a.mobile-cta{color:var(--white);background:var(--teal-mid);margin:1rem 1.5rem 1.25rem;border-bottom:none;text-align:center}
+
+.page-header{background:var(--off-white);padding:5rem 3rem 4rem;border-bottom:0.5px solid var(--rule)}
+.page-header-inner{max-width:720px}
+.page-eyebrow{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:1.25rem}
+.page-header h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-0.02em;color:var(--teal-deep);margin-bottom:1rem}
+.page-header-meta{font-size:0.82rem;color:var(--olive-light);letter-spacing:0.04em}
+.download-bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:var(--white);border-bottom:0.5px solid var(--rule);gap:1rem;flex-wrap:wrap}
+.download-bar p{font-size:0.82rem;color:var(--olive-light)}
+.btn-download{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--sans);font-weight:500;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);background:var(--ember);padding:0.7rem 1.5rem;text-decoration:none;transition:background 0.15s;border:none;cursor:pointer}
+.btn-download:hover{background:var(--burgundy)}
+
+.case-body{max-width:680px;margin:0 auto;padding:4.5rem 3rem}
+.opening{font-family:var(--serif);font-size:1.2rem;line-height:1.75;color:var(--teal-deep);margin-bottom:3.5rem;font-style:italic}
+
+.case-section{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:0.5px solid var(--rule)}
+.case-section:last-of-type{border-bottom:none}
+.case-section-label{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:1.1rem}
+.case-section h2{font-family:var(--serif);font-weight:700;font-size:1.4rem;line-height:1.25;color:var(--teal-deep);margin-bottom:1rem;letter-spacing:-0.01em}
+.case-section p{font-size:0.95rem;line-height:1.8;color:var(--olive);margin-bottom:1rem}
+.case-section p:last-child{margin-bottom:0}
+
+.three-blocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:0.5px solid var(--rule);margin:1.5rem 0}
+.block{padding:1.25rem 1.5rem;border-right:0.5px solid var(--rule)}
+.block:last-child{border-right:none}
+.block-label{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ember);margin-bottom:0.5rem}
+.block h3{font-family:var(--serif);font-size:0.95rem;font-weight:700;color:var(--teal-deep);margin-bottom:0.5rem;line-height:1.3}
+.block p{font-size:0.82rem;line-height:1.65;color:var(--olive)}
+
+.four-functions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:0.5px solid var(--rule);margin:1.5rem 0}
+.fn-card{padding:1.5rem;border-right:0.5px solid var(--rule);border-bottom:0.5px solid var(--rule)}
+.fn-card:nth-child(2){border-right:none}
+.fn-card:nth-child(3){border-bottom:none}
+.fn-card:nth-child(4){border-right:none;border-bottom:none}
+.continuum-diagram{margin:1.5rem 0;border:0.5px solid var(--rule);background:var(--off-white);padding:1.5rem}
+.fn-num{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:0.5rem}
+.fn-card h3{font-family:var(--serif);font-size:0.95rem;font-weight:700;color:var(--teal-deep);margin-bottom:0.5rem;line-height:1.3}
+.fn-card p{font-size:0.82rem;line-height:1.65;color:var(--olive)}
+
+.gap-diagram{display:grid;grid-template-columns:1fr 36px 1.15fr 36px 1fr;align-items:stretch;margin:1.5rem 0}
+.gap-col{padding:1.25rem 1.5rem;border:0.5px solid var(--rule);background:var(--white)}
+.gap-col-label{font-family:var(--sans);font-weight:500;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--olive-light);margin-bottom:0.5rem}
+.gap-col h3{font-family:var(--serif);font-size:0.9rem;font-weight:700;color:var(--teal-deep);margin-bottom:0.5rem;line-height:1.25}
+.gap-col p{font-size:0.78rem;line-height:1.6;color:var(--olive)}
+.gap-arrow{display:flex;align-items:center;justify-content:center;color:rgba(26,59,66,0.15);font-size:0.9rem}
+.gap-middle{padding:1.25rem 1.5rem;background:var(--teal-deep);border:0.5px solid var(--teal-deep)}
+.gap-middle .gap-col-label{color:var(--amber)}
+.gap-middle h3{font-family:var(--serif);font-size:0.9rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;line-height:1.25}
+.gap-middle p{font-size:0.78rem;line-height:1.6;color:rgba(255,255,255,0.68)}
+
+.pullquote{border-left:2px solid var(--teal-mid);padding:0.25rem 0 0.25rem 1.5rem;margin:2rem 0}
+.pullquote p{font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.5;color:var(--teal-deep);letter-spacing:-0.01em}
+
+.closing{background:var(--teal-deep);padding:3rem;margin-top:3rem}
+.closing p{font-family:var(--serif);font-style:italic;font-size:1.1rem;line-height:1.65;color:rgba(255,255,255,0.85);margin-bottom:1.5rem}
+.closing-meta{font-family:var(--sans);font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em}
+
+footer{background:var(--teal-deep);border-top:0.5px solid rgba(255,255,255,0.08);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-left p{font-size:0.78rem;color:rgba(255,255,255,0.38);line-height:1.8}
+.footer-left a{color:rgba(255,255,255,0.52);text-decoration:none}
+.footer-right{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);white-space:nowrap}
+
+@media(max-width:860px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .three-blocks{grid-template-columns:1fr}
+  .block{border-right:none;border-bottom:0.5px solid var(--rule)}
+  .block:last-child{border-bottom:none}
+  .four-functions{grid-template-columns:1fr}
+  .fn-card{border-right:none}
+  .fn-card:nth-child(3){border-bottom:0.5px solid var(--rule)}
+  .gap-diagram{grid-template-columns:1fr}
+  .gap-arrow{height:28px;transform:rotate(90deg)}
+}
+@media(max-width:640px){
+  nav{padding:0 1.25rem}
+  .page-header{padding:3.5rem 1.25rem 3rem}
+  .download-bar{padding:1rem 1.25rem}
+  .case-body{padding:3rem 1.25rem}
+  footer{padding:1.5rem 1.25rem;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="wordmark">Futureschool <em>Collaborative</em></a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">The case</a></li>
+    <li><a href="index.html#model">The model</a></li>
+    <li><a href="index.html#pilot">The pilot</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#">The case</a>
+  <a href="index.html#model">The model</a>
+  <a href="index.html#pilot">The pilot</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#contact" class="mobile-cta">Get in touch</a>
+</div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">The argument</p>
+    <h1>The missing middle in American education</h1>
+    <p class="page-header-meta">Futureschool Collaborative &nbsp;&#183;&nbsp; 2026</p>
+  </div>
+</div>
+
+<div class="download-bar">
+  <p>A brief on the unowned developmental layer between prevention and crisis &#8212; and why it matters now.</p>
+  <a href="#" class="btn-download" onclick="window.print(); return false;">&#8595; &nbsp;Download as PDF</a>
+</div>
+
+<div class="case-body">
+
+  <p class="opening">American schools were built to manage behavior. What they were not built to do &#8212; and what the current moment demands &#8212; is recognize and respond to the developmental conditions that produce that behavior in the first place.</p>
+
+  <div class="case-section">
+    <p class="case-section-label">The structural problem</p>
+    <h2>Two systems. One gap.</h2>
+    <p>Significant public and philanthropic investment flows to two ends of the youth support continuum. At one end: upstream prevention &#8212; SEL programming, PBIS frameworks, restorative practices, school-based wellness. At the other: downstream intervention &#8212; counseling services, psychiatric evaluation, SPED referrals, crisis response.</p>
+    <p>What sits between them is real, costly to ignore, and structurally unclaimed. Many young people &#8212; particularly those experiencing early relational instability, identity disruption, and emerging coping collapse &#8212; cycle between school discipline, short-term supports, and family pressure without ever reaching a layer that can recognize what's actually happening and respond before it hardens into crisis.</p>
+
+    <div class="continuum-diagram">
+      <svg width="100%" viewBox="0 0 680 490" role="img">
+        <title>A designed continuum of care — the missing middle</title>
+        <desc>Three descending arc-shaped bands. Tier 1 in sky blue shows upstream prevention. Tier 2 in amber shows developmental stabilization with no dedicated funding category. Tier 3 in ember shows crisis and intensive support.</desc>
+
+        <path d="M40,40 Q340,10 640,40 L620,165 Q340,135 60,165 Z"
+          fill="#8EB5DC" fill-opacity="0.82" stroke="#5A8FBB" stroke-width="0.5"/>
+        <path d="M60,175 Q340,145 620,175 L595,310 Q340,280 85,310 Z"
+          fill="#FFB71C" fill-opacity="0.82" stroke="#C8880A" stroke-width="0.5"/>
+        <path d="M85,320 Q340,290 595,320 L570,420 Q340,395 110,420 Z"
+          fill="#D2421D" fill-opacity="0.85" stroke="#9B2E0E" stroke-width="0.5"/>
+
+        <text x="340" y="62" text-anchor="middle"
+          font-family="'DM Sans',system-ui,sans-serif" font-weight="500" font-size="11"
+          letter-spacing="0.14em" fill="#0C3050" fill-opacity="0.85">TIER 1 — UPSTREAM PREVENTION</text>
+        <text x="340" y="79" text-anchor="middle"
+          font-family="Georgia,serif" font-style="italic" font-size="11.5"
+          fill="#0C3050" fill-opacity="0.65">Universal SEL &amp; wellness · PBIS frameworks · restorative practices · school-based supports</text>
+
+        <text x="340" y="206" text-anchor="middle"
+          font-family="'DM Sans',system-ui,sans-serif" font-weight="500" font-size="11"
+          letter-spacing="0.14em" fill="#6B4200" fill-opacity="0.92">TIER 2 — DEVELOPMENTAL STABILIZATION</text>
+        <text x="340" y="224" text-anchor="middle"
+          font-family="Georgia,serif" font-style="italic" font-size="11.5"
+          fill="#6B4200" fill-opacity="0.78">Shared developmental signal frameworks · cross-role interpretive capacity</text>
+        <text x="340" y="240" text-anchor="middle"
+          font-family="Georgia,serif" font-style="italic" font-size="11.5"
+          fill="#6B4200" fill-opacity="0.78">Coordination protocols · developmentally-informed observation tools</text>
+        <text x="340" y="256" text-anchor="middle"
+          font-family="Georgia,serif" font-style="italic" font-size="11.5"
+          fill="#6B4200" fill-opacity="0.78">Practitioner development · reskinned reports + communication structures</text>
+
+        <rect x="240" y="268" width="200" height="22" rx="3"
+          fill="#9B4200" fill-opacity="0.15" stroke="#9B4200" stroke-opacity="0.3" stroke-width="0.5"/>
+        <text x="340" y="283" text-anchor="middle"
+          font-family="'DM Sans',system-ui,sans-serif" font-weight="500" font-size="10"
+          letter-spacing="0.1em" fill="#6B3000" fill-opacity="0.85">NO DEDICATED FUNDING CATEGORY</text>
+
+        <text x="340" y="346" text-anchor="middle"
+          font-family="'DM Sans',system-ui,sans-serif" font-weight="500" font-size="11"
+          letter-spacing="0.14em" fill="#FFFFFF" fill-opacity="0.9">TIER 3 — CRISIS + INTENSIVE SUPPORT</text>
+        <text x="340" y="364" text-anchor="middle"
+          font-family="Georgia,serif" font-style="italic" font-size="11.5"
+          fill="#FFFFFF" fill-opacity="0.72">Counseling services · psychiatric evaluation · SPED referrals · crisis response</text>
+
+        <text x="340" y="455" text-anchor="middle"
+          font-family="Georgia,serif" font-style="italic" font-size="12"
+          fill="#54554C" fill-opacity="0.6">Not a replacement for MTSS &#8212; a developmental pathway operating within it.</text>
+
+        <line x1="22" y1="40" x2="22" y2="418" stroke="#54554C" stroke-width="0.5" stroke-opacity="0.25"/>
+        <polygon points="22,423 18,410 26,410" fill="#54554C" fill-opacity="0.25"/>
+        <text x="14" y="230" text-anchor="middle"
+          font-family="'DM Sans',system-ui,sans-serif" font-size="10"
+          letter-spacing="0.1em" fill="#54554C" fill-opacity="0.45"
+          transform="rotate(-90 14 230)">DRIFT</text>
+      </svg>
+    </div>
+
+    <p>This is not a program gap. It is a systems gap &#8212; one that will not be closed by adding another intervention to either end of the continuum.</p>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">Why existing systems struggle</p>
+    <h2>Each system has reach or precision. None has both — and none is accountable for the space between.</h2>
+
+    <div class="three-blocks">
+      <div class="block">
+        <p class="block-label">Schools</p>
+        <h3>Access without depth</h3>
+        <p>Earliest and most consistent contact with young people &#8212; but without frameworks for what lies beneath behavior, management is the only tool available.</p>
+      </div>
+      <div class="block">
+        <p class="block-label">Clinicians</p>
+        <h3>Depth without continuity</h3>
+        <p>Diagnostic precision, but episodic presence. By the time a referral arrives, the developmental window has often already narrowed.</p>
+      </div>
+      <div class="block">
+        <p class="block-label">County systems</p>
+        <h3>Eligibility without flexibility</h3>
+        <p>Built to respond to what is already legible &#8212; a diagnosis, a crisis, a threshold crossed. Families in the middle zone don&#8217;t qualify. They wait.</p>
+      </div>
+    </div>
+
+    <p>Young people cycling between these systems arrive at institutional care not because early support failed &#8212; but because early support was never structurally possible. By the time the door opens, the room has already changed.</p>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">What developmental infrastructure means</p>
+    <h2>Not a new program. A new layer of function.</h2>
+    <p>Developmental infrastructure does not replace existing services, create a new point of custody, or redirect young people away from the systems already responsible for their care. It aligns how developmental signals are recognized, interpreted, and acted upon across the full continuum. Specifically, it does four things:</p>
+
+    <div class="four-functions">
+      <div class="fn-card">
+        <p class="fn-num">01</p>
+        <h3>Identifies shared developmental signals</h3>
+        <p>Early patterns &#8212; neurobiological overload, relational collapse, identity instability &#8212; that precede crisis and are most likely to consolidate into diagnosable conditions if left unaddressed.</p>
+      </div>
+      <div class="fn-card">
+        <p class="fn-num">02</p>
+        <h3>Builds cross-role interpretive capacity</h3>
+        <p>So educators, clinicians, and community providers can recognize the same signals and respond in developmentally compatible ways &#8212; rather than mislabeling, delaying, or escalating.</p>
+      </div>
+      <div class="fn-card">
+        <p class="fn-num">03</p>
+        <h3>Supports early stabilization pathways</h3>
+        <p>That feed into schools, therapeutic environments, and family systems &#8212; with attention to nervous system regulation, relational repair, and identity formation prior to diagnostic thresholds.</p>
+      </div>
+      <div class="fn-card">
+        <p class="fn-num">04</p>
+        <h3>Returns young people in better shape</h3>
+        <p>Reducing misplacement, unnecessary escalation, and long-term utilization by strengthening developmental readiness rather than replacing the care systems that follow.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">Why now</p>
+    <h2>The window is narrowing.</h2>
+    <p>Youth development is now unfolding amid overlapping pressures &#8212; persistent digital saturation, social fragmentation, economic precarity, and reduced access to stable, regulating adult relationships. Together, these conditions have intensified neurobiological load and shortened the window in which distress remains subtle, relational, and recoverable.</p>
+    <p>Without a recognized developmental middle layer, this compression accelerates escalation. Young people reach crisis before qualifying for care. Systems absorb higher downstream costs. And adult mental health and substance use systems become the first point of real containment rather than the last line of support.</p>
+
+    <div class="pullquote">
+      <p>The earliest point in the trajectory where intervention is both humane and cost-effective currently lacks a clear structural home.</p>
+    </div>
+  </div>
+
+  <div class="case-section">
+    <p class="case-section-label">What this brief is inviting</p>
+    <h2>A conversation about infrastructure, not programs.</h2>
+    <p>Futureschool Collaborative is building and testing the developmental coordination layer that public school systems currently lack &#8212; in partnership with districts, grounded in direct school practice, and designed from the start to be replicable and publicly available.</p>
+    <p>This brief is an invitation to partners already thinking systemically about the future of behavioral health and education &#8212; particularly those engaged in shaping how early intervention, accountability, and long-term impact are understood, supported, and coordinated across sectors.</p>
+  </div>
+
+  <div class="closing">
+    <p>Moving schools from a behavior management culture to developmental infrastructure. That is the work. That is the gap. That is what this moment requires.</p>
+    <p class="closing-meta">Futureschool Collaborative &nbsp;&#183;&nbsp; 2026 &nbsp;&#183;&nbsp; A project of the Oakland Public Education Fund</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-left">
+    <p>Futureschool Collaborative is a project of <a href="https://www.oaklandedfund.org" target="_blank" rel="noopener">the Oakland Public Education Fund</a>, a registered 501(c)(3).</p>
+    <p>Led by the team at Bloom</p>
+  </div>
+  <div class="footer-right">Futureschool Collaborative &nbsp;&#183;&nbsp; 2026</div>
+</footer>
+
+<script>
+const btn = document.getElementById('hamburger');
+const menu = document.getElementById('mobile-menu');
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+});
+menu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

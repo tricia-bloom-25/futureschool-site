@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Futureschool Collaborative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal-deep:#1A3B42;
+  --teal-mid:#1B6879;
+  --teal-mid-hover:#155666;
+  --sky:#8EB5DC;
+  --white:#FFFFFF;
+  --off-white:#F4F2EE;
+  --olive:#54554C;
+  --olive-light:#7a7a72;
+  --ember:#D2421D;
+  --burgundy:#9B0A0A;
+  --amber:#FFB71C;
+  --rule:rgba(26,59,66,0.1);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.65;color:var(--olive);background:var(--white);-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(26,59,66,0.96);backdrop-filter:blur(8px);border-bottom:0.5px solid rgba(255,255,255,0.08);padding:0 3rem;display:flex;justify-content:space-between;align-items:center;height:60px}
+.wordmark{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--white);letter-spacing:-0.01em;text-decoration:none}
+.wordmark em{font-style:italic;color:var(--sky);font-weight:400}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.15s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{color:var(--white)!important;background:var(--teal-mid)!important;padding:0.6rem 1.4rem;transition:background 0.15s!important}
+.nav-cta:hover{background:var(--teal-mid-hover)!important}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0.5rem;margin-left:auto}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,0.7);transition:transform 0.2s,opacity 0.2s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(26,59,66,0.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--sans);font-weight:500;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:1.1rem 1.5rem;border-bottom:0.5px solid rgba(255,255,255,0.06);transition:color 0.15s}
+.mobile-menu a:hover{color:var(--white)}
+.mobile-menu a.mobile-cta{color:var(--white);background:var(--teal-mid);margin:1rem 1.5rem 1.25rem;border-bottom:none;text-align:center}
+
+.page-header{background:var(--off-white);padding:5rem 3rem 4rem;border-bottom:0.5px solid var(--rule)}
+.page-header-inner{max-width:720px}
+.page-eyebrow{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:1.25rem}
+.page-header h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-0.02em;color:var(--teal-deep);margin-bottom:1rem}
+.page-header-sub{font-size:1.05rem;line-height:1.8;color:var(--olive);max-width:580px;margin-top:1rem}
+
+.about-body{max-width:780px;margin:0 auto;padding:4.5rem 3rem}
+
+.about-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:0.5px solid var(--rule)}
+.about-section:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+
+.section-label{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:1.1rem}
+
+.about-section h2{font-family:var(--serif);font-weight:700;font-size:1.5rem;line-height:1.2;color:var(--teal-deep);margin-bottom:1rem;letter-spacing:-0.01em}
+
+.about-section p{font-size:0.95rem;line-height:1.85;color:var(--olive);margin-bottom:1rem}
+.about-section p:last-child{margin-bottom:0}
+
+.about-section a.inline-link{color:var(--teal-mid);text-decoration:none;border-bottom:0.5px solid var(--teal-mid);transition:color 0.15s,border-color 0.15s}
+.about-section a.inline-link:hover{color:var(--teal-deep);border-color:var(--teal-deep)}
+
+.leadership-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:0.5px solid var(--rule);margin-top:1.5rem}
+.leader-card{padding:2rem;border-right:0.5px solid var(--rule);background:var(--white)}
+.leader-card:last-child{border-right:none;background:var(--off-white)}
+.leader-name{font-family:var(--serif);font-weight:700;font-size:1.1rem;color:var(--teal-deep);margin-bottom:0.25rem;line-height:1.2}
+.leader-title{font-family:var(--sans);font-weight:400;font-size:0.78rem;color:var(--teal-mid);margin-bottom:1rem;letter-spacing:0.02em}
+.leader-photo{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-family:var(--serif);font-weight:700;font-size:2.2rem;color:var(--white)}
+.leader-photo-1{background:var(--teal-deep)}
+.leader-photo-2{background:var(--teal-mid)}
+.leader-card p{font-size:0.88rem;line-height:1.75;color:var(--olive);margin-bottom:0}
+
+.dxd-block{background:var(--off-white);border:0.5px solid var(--rule);padding:2rem;margin-top:1.5rem}
+.dxd-block p{font-size:0.92rem;line-height:1.82;color:var(--olive);margin-bottom:0.75rem}
+.dxd-block p:last-child{margin-bottom:0}
+.dxd-download{display:inline-flex;align-items:center;margin-top:1rem;font-family:var(--sans);font-weight:500;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-mid);text-decoration:none;border-bottom:0.5px solid var(--teal-mid);padding-bottom:0.15rem;transition:color 0.15s,border-color 0.15s}
+.dxd-download:hover{color:var(--teal-deep);border-color:var(--teal-deep)}
+.dxd-download span{font-size:0.85rem}
+
+.spine-block{background:var(--teal-deep);padding:2.5rem;margin-top:1.5rem}
+.spine-block p{font-size:0.92rem;line-height:1.82;color:rgba(255,255,255,0.75);margin-bottom:0.75rem}
+.spine-block p:last-child{margin-bottom:0}
+.spine-block a.spine-link{color:var(--sky);text-decoration:none;border-bottom:0.5px solid rgba(142,181,220,0.4);transition:color 0.15s}
+.spine-block a.spine-link:hover{color:var(--white)}
+.spine-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.6;color:var(--white);margin-bottom:1rem;display:block}
+
+.closing-cta{background:var(--off-white);border:0.5px solid var(--rule);padding:2.5rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.closing-cta p{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--teal-deep);margin:0;max-width:480px}
+.btn-primary{display:inline-block;font-family:var(--sans);font-weight:500;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);background:var(--teal-mid);padding:0.9rem 2rem;text-decoration:none;transition:background 0.15s;white-space:nowrap}
+.btn-primary:hover{background:var(--teal-mid-hover)}
+footer{background:var(--teal-deep);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:0.5px solid rgba(255,255,255,0.08)}
+.footer-left p{font-size:0.78rem;color:rgba(255,255,255,0.38);line-height:1.8}
+.footer-left a{color:rgba(255,255,255,0.52);text-decoration:none}
+.footer-right{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);white-space:nowrap}
+
+@media(max-width:860px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .leadership-grid{grid-template-columns:1fr}
+  .leader-card{border-right:none;border-bottom:0.5px solid var(--rule)}
+  .leader-card:last-child{border-bottom:none}
+  .closing-cta{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:640px){
+  nav{padding:0 1.25rem}
+  .page-header{padding:3.5rem 1.25rem 3rem}
+  .about-body{padding:3rem 1.25rem}
+  footer{padding:1.5rem 1.25rem;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="wordmark">Futureschool <em>Collaborative</em></a>
+  <ul class="nav-links">
+    <li><a href="case.html">The case</a></li>
+    <li><a href="model.html">The model</a></li>
+    <li><a href="pilot.html">The pilot</a></li>
+    <li><a href="#" class="active">About</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="case.html">The case</a>
+  <a href="model.html">The model</a>
+  <a href="pilot.html">The pilot</a>
+  <a href="#">About</a>
+  <a href="index.html#contact" class="mobile-cta">Get in touch</a>
+</div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Who we are and where this comes from</p>
+    <h1>About Futureschool Collaborative</h1>
+    <p class="page-header-sub">Futureschool Collaborative is an initiative of the Oakland Public Education Fund focused on designing, testing, and scaling developmental infrastructure in public school systems. What follows is the story of how it came to exist and who is building it.</p>
+  </div>
+</div>
+
+<div class="about-body">
+
+  <div class="about-section">
+    <p class="section-label">The initiative</p>
+    <h2>A new infrastructure layer for public schools.</h2>
+    <p>Futureschool Collaborative exists because the infrastructure most schools need to support adolescent development doesn&#8217;t exist yet as a recognized, funded, or accountable layer. Schools invest in academic programs. They invest in crisis response. But almost nothing goes toward the coordination layer in between &#8212; the shared frameworks, protocols, and adult capacity that determine whether either of those investments actually reaches the students who need them most.</p>
+    <p>Building that layer &#8212; in real school conditions, in partnership with districts, with documentation and learning built into the work from the start &#8212; is what Futureschool Collaborative is for. The initiative is housed within the <a href="https://www.oaklandedfund.org" target="_blank" rel="noopener" class="inline-link">Oakland Public Education Fund</a>, which provides fiscal sponsorship, administrative infrastructure, and institutional credibility across Oakland public schools. The practice-based work is led by the team at Bloom.</p>
+  </div>
+
+  <div class="about-section">
+    <p class="section-label">The leadership</p>
+    <h2>A partnership the field has not yet seen.</h2>
+    <p>The initiative is led by two practitioners whose work converges at the precise intersection this problem requires: systems design and behavioral health science, meeting at the level of the school and the district.</p>
+
+    <div class="leadership-grid">
+      <div class="leader-card">
+        <div class="leader-photo leader-photo-1">TD</div>
+        <p class="leader-name">Tricia Douglas</p>
+        <p class="leader-title">Doctoral Researcher, Transition Design &nbsp;·&nbsp; Carnegie Mellon University</p>
+        <p>Tricia&#8217;s work sits at the intersection of systems design, organizational change, and human development. As a doctoral researcher in Transition Design at Carnegie Mellon, she examines how learning environments shape identity, belonging, behavior, and developmental capacity over time &#8212; and what it takes to design them differently. That question is the engine of Futureschool Collaborative. She has spent several years working directly with schools, districts, and community organizations to build the kind of developmental infrastructure this initiative is now formalizing at scale.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-photo leader-photo-2">KB</div>
+        <p class="leader-name">Khalima Bolden-Thompson, PhD</p>
+        <p class="leader-title">Associate Professor of Psychiatry and Behavioral Sciences &nbsp;·&nbsp; UC Davis Early Psychosis Centers</p>
+        <p>Khalima brings clinical and neurobiological precision to the partnership &#8212; the depth of understanding that distinguishes a developmental signal from a behavioral label, and the scientific grounding that makes the framework more than well-intentioned practice. Her work in early psychosis intervention and community-based behavioral health has shaped how she thinks about early stabilization: the window before diagnosis, before crisis, where the most meaningful intervention is still possible. That window is exactly where Futureschool Collaborative operates.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <p class="section-label">The intellectual home</p>
+    <h2>Rooted in the Design for Development framework.</h2>
+    <p>Futureschool Collaborative is the district-scale expression of a larger intellectual project: Development by Design, or DxD &#8212; a practice-based framework examining how the environments, technologies, institutions, and relationships that surround people shape their capacity to grow, learn, and lead full lives. DxD is the theoretical home of this work. Bloom Collective is its living laboratory. Futureschool Collaborative is where it meets public school systems at scale.</p>
+
+    <div class="dxd-block">
+      <p>DxD emerged from a simple but consequential observation: most designed environments &#8212; schools, workplaces, products, institutions &#8212; are not designed with human development as an explicit goal. They shape development anyway, but without intention, without accountability, and without the frameworks that would allow the people inside them to recognize what is happening and intervene.</p>
+      <p>The developmental infrastructure model that Futureschool Collaborative is building is DxD applied to schools: what does it look like to design a school environment that actively supports the neurological and social development of the young people inside it, not as a program layered on top, but as the structural logic of how adults see, coordinate, and respond?</p>
+      <a href="files/dxd-framework.pdf" class="dxd-download" download>
+        <span>&#8595;</span>&nbsp; Download the DxD framework
+      </a>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <p class="section-label">The proposition</p>
+    <h2>Moving schools from a behavior management culture to developmental infrastructure.</h2>
+    <p>That is the intellectual spine of this work. Not a tagline &#8212; a genuine reorientation of what schools are understood to be for and what adults inside them are equipped to do.</p>
+
+    <div class="spine-block">
+      <span class="spine-quote">What would it look like if schools were designed around development, not compliance?</span>
+      <p>The model we are building &#8212; Align, Operationalize, Coordinate &#8212; is the practical answer to that question. It doesn&#8217;t ask schools to become therapeutic environments or to take on responsibilities that belong to clinical systems. It asks them to do what they are already positioned to do &#8212; and to do it with a developmental framework that makes that positioning meaningful.</p>
+      <p>The full argument for why this matters, why now, and what the structural gap looks like is laid out in <a href="case.html" class="spine-link">The Case</a>. The model itself is documented in <a href="model.html" class="spine-link">The Model</a>. What you&#8217;ll find there is the same thing you&#8217;ll find here: a team that has been sitting with this problem long enough to know that the answer is not another program.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="about-body" style="padding-top:0;padding-bottom:4.5rem;max-width:780px;margin:0 auto;">
+  <div class="closing-cta">
+    <p>If this is the kind of work your district, school, or foundation has been waiting to see exist &#8212; we&#8217;d like to hear from you.</p>
+    <a href="index.html#contact" class="btn-primary">Get in touch &#8594;</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <p>Futureschool Collaborative is a project of <a href="https://www.oaklandedfund.org" target="_blank" rel="noopener">the Oakland Public Education Fund</a>, a registered 501(c)(3).</p>
+    <p>Led by the team at Bloom</p>
+  </div>
+  <div class="footer-right">Futureschool Collaborative &nbsp;&#183;&nbsp; 2026</div>
+</footer>
+
+<script>
+const btn = document.getElementById('hamburger');
+const menu = document.getElementById('mobile-menu');
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+});
+menu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

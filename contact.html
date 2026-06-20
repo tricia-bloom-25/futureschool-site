@@ -75,7 +75,16 @@ nav{position:sticky;top:0;z-index:100;background:rgba(26,59,66,0.96);backdrop-fi
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--teal-mid)}
 .form-field textarea{resize:vertical;min-height:120px;font-family:var(--sans)}
 .form-field label{display:block;font-family:var(--sans);font-weight:500;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--olive-light);margin-bottom:0.5rem}
-
+.optional-tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--olive-light);
+  opacity: 0.7;
+  font-size: 0.78rem;
+}
 .btn-submit{display:inline-block;font-family:var(--sans);font-weight:500;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);background:var(--teal-mid);padding:1rem 2.5rem;border:none;cursor:pointer;transition:background 0.15s;margin-top:0.5rem}
 .btn-submit:hover{background:var(--teal-mid-hover)}
 
@@ -186,13 +195,13 @@ footer{background:var(--teal-deep);padding:2rem 3rem;display:flex;justify-conten
         <label for="email">Email</label>
         <input type="email" name="email" id="email" required>
       </div>
-      <div class="form-field full">
+      <div class="form-field">
+        <label for="title">Title<span class="optional-tag">optional</span></label>
+        <input type="text" name="title" id="title" placeholder="e.g. Superintendent, Program Officer, School Counselor, Student Dean">
+      </div>
+      <div class="form-field">
         <label for="organization">Organization</label>
         <input type="text" name="organization" id="organization">
-      </div>
-      <div class="form-field full">
-        <label for="role">Role</label>
-        <input type="text" name="role" id="role">
       </div>
       <div class="form-field full">
         <label for="message">What would you like to share? Please let us know how we can best support.</label>

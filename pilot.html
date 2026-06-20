@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pilot — Futureschool Collaborative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal-deep:#1A3B42;
+  --teal-mid:#1B6879;
+  --teal-mid-hover:#155666;
+  --sky:#8EB5DC;
+  --white:#FFFFFF;
+  --off-white:#F4F2EE;
+  --olive:#54554C;
+  --olive-light:#7a7a72;
+  --ember:#D2421D;
+  --burgundy:#9B0A0A;
+  --amber:#FFB71C;
+  --rule:rgba(26,59,66,0.1);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.65;color:var(--olive);background:var(--white);-webkit-font-smoothing:antialiased}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(26,59,66,0.96);backdrop-filter:blur(8px);border-bottom:0.5px solid rgba(255,255,255,0.08);padding:0 3rem;display:flex;justify-content:space-between;align-items:center;height:60px}
+.wordmark{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--white);letter-spacing:-0.01em;text-decoration:none}
+.wordmark em{font-style:italic;color:var(--sky);font-weight:400}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.15s}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--white)}
+.nav-cta{color:var(--white)!important;background:var(--teal-mid)!important;padding:0.6rem 1.4rem;transition:background 0.15s!important}
+.nav-cta:hover{background:var(--teal-mid-hover)!important}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:0.5rem;margin-left:auto}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,0.7);transition:transform 0.2s,opacity 0.2s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(26,59,66,0.98);backdrop-filter:blur(8px);z-index:99;flex-direction:column;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--sans);font-weight:500;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;padding:1.1rem 1.5rem;border-bottom:0.5px solid rgba(255,255,255,0.06);transition:color 0.15s}
+.mobile-menu a:hover{color:var(--white)}
+.mobile-menu a.mobile-cta{color:var(--white);background:var(--teal-mid);margin:1rem 1.5rem 1.25rem;border-bottom:none;text-align:center}
+
+.page-header{background:var(--off-white);padding:5rem 3rem 4rem;border-bottom:0.5px solid var(--rule)}
+.page-header-inner{max-width:720px}
+.page-eyebrow{font-family:var(--sans);font-weight:500;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:1.25rem}
+.page-header h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-0.02em;color:var(--teal-deep);margin-bottom:1rem}
+.page-header-sub{font-size:1.05rem;line-height:1.8;color:var(--olive);max-width:580px;margin-top:1rem}
+
+.pilot-body{max-width:780px;margin:0 auto;padding:4.5rem 3rem}
+
+.pilot-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:0.5px solid var(--rule)}
+.pilot-section:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+
+.section-label{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:1.1rem}
+
+.pilot-section h2{font-family:var(--serif);font-weight:700;font-size:1.5rem;line-height:1.2;color:var(--teal-deep);margin-bottom:1rem;letter-spacing:-0.01em}
+
+.pilot-section p{font-size:0.95rem;line-height:1.85;color:var(--olive);margin-bottom:1rem}
+.pilot-section p:last-child{margin-bottom:0}
+
+.readiness-list{margin:1.5rem 0;border:0.5px solid var(--rule)}
+.readiness-item{display:grid;grid-template-columns:2.5rem 1fr;align-items:start;padding:1.25rem 1.5rem;border-bottom:0.5px solid var(--rule);gap:0 1rem}
+.readiness-item:last-child{border-bottom:none}
+.readiness-item-alt{background:var(--off-white)}
+.readiness-num{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ember);padding-top:0.15rem}
+.readiness-content h3{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--teal-deep);margin-bottom:0.35rem;line-height:1.3}
+.readiness-content p{font-size:0.88rem;line-height:1.7;color:var(--olive);margin-bottom:0}
+
+.two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:0.5px solid var(--rule);margin-top:1.5rem}
+.contrib-card{padding:1.75rem;border-right:0.5px solid var(--rule);background:var(--white)}
+.contrib-card:last-child{border-right:none;background:var(--off-white)}
+.contrib-label{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-mid);margin-bottom:0.75rem}
+.contrib-card h3{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--teal-deep);margin-bottom:0.75rem;line-height:1.3}
+.contrib-card ul{list-style:none;padding:0}
+.contrib-card ul li{font-size:0.88rem;line-height:1.7;color:var(--olive);padding:0.3rem 0;border-bottom:0.5px solid var(--rule)}
+.contrib-card ul li:last-child{border-bottom:none}
+.contrib-card ul li::before{content:"\2192";margin-right:0.6rem;color:var(--teal-mid);font-size:0.8rem}
+
+.arc-block{margin-top:1.5rem;border:0.5px solid var(--rule)}
+.arc-item{padding:1.25rem 1.5rem;border-bottom:0.5px solid var(--rule);display:grid;grid-template-columns:5rem 1fr;gap:0 1.5rem;align-items:start}
+.arc-item:last-child{border-bottom:none}
+.arc-item:nth-child(2){background:var(--off-white)}
+.arc-year{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ember);padding-top:0.2rem}
+.arc-content h3{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--teal-deep);margin-bottom:0.35rem;line-height:1.3}
+.arc-content p{font-size:0.88rem;line-height:1.7;color:var(--olive);margin-bottom:0}
+
+.ecology-block{background:var(--teal-deep);padding:2.5rem;margin-top:1.5rem}
+.ecology-block p{font-size:0.92rem;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.75rem}
+.ecology-block p:last-child{margin-bottom:0}
+.ecology-block strong{color:rgba(255,255,255,0.95);font-weight:500}
+
+.application-block{background:var(--off-white);border:0.5px solid var(--rule);padding:2.5rem;margin-top:1.5rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.application-block p{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.65;color:var(--teal-deep);margin:0;max-width:480px}
+.btn-primary{display:inline-block;font-family:var(--sans);font-weight:500;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);background:var(--teal-mid);padding:0.9rem 2rem;text-decoration:none;transition:background 0.15s;white-space:nowrap}
+.btn-primary:hover{background:var(--teal-mid-hover)}
+
+footer{background:var(--teal-deep);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:0.5px solid rgba(255,255,255,0.08)}
+.footer-left p{font-size:0.78rem;color:rgba(255,255,255,0.38);line-height:1.8}
+.footer-left a{color:rgba(255,255,255,0.52);text-decoration:none}
+.footer-right{font-family:var(--sans);font-weight:500;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);white-space:nowrap}
+
+@media(max-width:860px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .two-col{grid-template-columns:1fr}
+  .contrib-card{border-right:none;border-bottom:0.5px solid var(--rule)}
+  .contrib-card:last-child{border-bottom:none}
+  .application-block{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:640px){
+  nav{padding:0 1.25rem}
+  .page-header{padding:3.5rem 1.25rem 3rem}
+  .pilot-body{padding:3rem 1.25rem}
+  .arc-item{grid-template-columns:4rem 1fr}
+  .readiness-item{grid-template-columns:2rem 1fr}
+  footer{padding:1.5rem 1.25rem;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="wordmark">Futureschool <em>Collaborative</em></a>
+  <ul class="nav-links">
+    <li><a href="case.html">The case</a></li>
+    <li><a href="model.html">The model</a></li>
+    <li><a href="#" class="active">The pilot</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="case.html">The case</a>
+  <a href="model.html">The model</a>
+  <a href="#">The pilot</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact" class="mobile-cta">Get in touch</a>
+</div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Where the framework meets practice</p>
+    <h1>The Developmental Stabilization Pilot</h1>
+    <p class="page-header-sub">The pilot is not a program delivery. It is a partnership &#8212; a structured collaboration between Futureschool Collaborative and a school or district ready to build developmental infrastructure together, in real conditions, over time.</p>
+  </div>
+</div>
+
+<div class="pilot-body">
+
+  <div class="pilot-section">
+    <p class="section-label">What we look for</p>
+    <h2>Readiness is the starting point.</h2>
+    <p>Not every school or district that faces the challenges this work addresses is positioned to benefit from it yet. The pilot works when three conditions are present &#8212; and the first conversation is always about whether they are.</p>
+
+    <div class="readiness-list">
+      <div class="readiness-item">
+        <div class="readiness-num">01</div>
+        <div class="readiness-content">
+          <h3>A named champion in senior leadership</h3>
+          <p>A principal, superintendent, assistant superintendent, or network leader who understands the developmental argument, can create the institutional conditions for the work, and is willing to be accountable for it.</p>
+        </div>
+      </div>
+      <div class="readiness-item readiness-item-alt">
+        <div class="readiness-num">02</div>
+        <div class="readiness-content">
+          <h3>Documented evidence of need</h3>
+          <p>Disciplinary disproportionality, fragmented student support systems, or adult coordination gaps that leadership has acknowledged &#8212; not just observed. The problem needs to be named before the work can begin.</p>
+        </div>
+      </div>
+      <div class="readiness-item">
+        <div class="readiness-num">03</div>
+        <div class="readiness-content">
+          <h3>An appetite for learning, not just implementation</h3>
+          <p>The pilot is a model-building exercise. That means iteration, documentation, honest reflection, and the occasional course correction. Schools and districts that need a finished product are not ready for this partnership yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pilot-section">
+    <p class="section-label">Year one</p>
+    <h2>Building the framework in real school conditions.</h2>
+    <p>The model draws on ecological systems thinking &#8212; the understanding that a student&#8217;s developmental trajectory is shaped not by any single relationship or intervention but by the quality and coherence of the full environment surrounding them. Year one work focuses on strengthening that environment at the adult layer.</p>
+    <p>Students are identified by district and school leadership &#8212; those with prior suspension histories, early signs of disengagement or relational instability, or otherwise experiencing significant academic, social, behavioral, or emotional challenges that have not yet crossed a clinical or disciplinary threshold. Futureschool works with the adults surrounding them.</p>
+
+    <div class="two-col">
+      <div class="contrib-card">
+        <p class="contrib-label">Futureschool brings</p>
+        <h3>The infrastructure and facilitation</h3>
+        <ul>
+          <li>Embedded facilitation across pilot school sites</li>
+          <li>Behavioral health consultation partnership</li>
+          <li>Shared developmental signal frameworks</li>
+          <li>Practitioner development cohort facilitation</li>
+          <li>Documentation and learning infrastructure</li>
+          <li>Reskinned observation and reporting tools</li>
+        </ul>
+      </div>
+      <div class="contrib-card">
+        <p class="contrib-label">The district brings</p>
+        <h3>The institutional conditions</h3>
+        <ul>
+          <li>Senior leadership engagement and accountability</li>
+          <li>Staff time and participation in cohort sessions</li>
+          <li>Institutional access across pilot school sites</li>
+          <li>Honest reflection and willingness to iterate</li>
+          <li>Student identification for the centered population</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="pilot-section">
+    <p class="section-label">The arc</p>
+    <h2>The work is designed to deepen and transfer.</h2>
+    <p>The pilot is not a one-year engagement with an uncertain future. It is the first phase of a structured arc in which external facilitation gradually gives way to internal capacity. The goal is always transfer &#8212; a school or district that owns the model and sustains it independently. The timeline is determined by what the work actually requires.</p>
+
+    <div class="arc-block">
+      <div class="arc-item">
+        <div class="arc-year">Year one</div>
+        <div class="arc-content">
+          <h3>Establish</h3>
+          <p>Futureschool Collaborative embeds across pilot school sites &#8212; building the shared developmental framework, introducing coordination protocols, and launching practitioner development cohorts. Everything is documented: what works, what needs adjustment, and what the partnership requires to go deeper.</p>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-year">Beyond year one</div>
+        <div class="arc-content">
+          <h3>Deepen &#8594; Transfer</h3>
+          <p>After year one, the work deepens with the Bloom team &#8212; expanding across more adults and contexts, strengthening coordination structures, and building toward a point where the district owns the model and sustains it independently. The goal is always transfer. The timeline is determined by what the work actually requires.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pilot-section">
+    <p class="section-label">Funding the pilot</p>
+    <h2>Not every district ready for this work can fund it in year one.</h2>
+    <p>Futureschool Collaborative maintains a grant-funded pool that covers year-one costs for districts where budget is a genuine barrier. Districts that engage through this pathway are demonstration partners &#8212; their real-world context strengthens the model and makes it more replicable. The grant derisks the proof of concept so that districts can see the work before committing to fund it independently.</p>
+    <p>Districts that can absorb year-one costs engage directly. Districts that cannot apply for a subsidized partnership slot. Both tracks deliver the same embedded framework. What differs is the funding source, not the depth of engagement.</p>
+  </div>
+
+  <div class="pilot-section">
+    <p class="section-label">Where it begins</p>
+    <div class="application-block">
+      <p>The right partnership starts with an honest conversation about readiness, scope, and what the work could hold. If that sounds like something worth exploring, we&#8217;d like to hear from you.</p>
+      <a href="index.html#contact" class="btn-primary">Start a conversation &#8594;</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-left">
+    <p>Futureschool Collaborative is a project of <a href="https://www.oaklandedfund.org" target="_blank" rel="noopener">the Oakland Public Education Fund</a>, a registered 501(c)(3).</p>
+    <p>Led by the team at Bloom</p>
+  </div>
+  <div class="footer-right">Futureschool Collaborative &nbsp;&#183;&nbsp; 2026</div>
+</footer>
+
+<script>
+const btn = document.getElementById('hamburger');
+const menu = document.getElementById('mobile-menu');
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+});
+menu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>

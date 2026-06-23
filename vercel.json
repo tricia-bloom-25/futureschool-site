@@ -8,6 +8,6 @@
     { "source": "/pilot", "destination": "/pilot.html" }
     ],
   "redirects": [
-    { "source": "/partnership", "destination": "/oakedfund", "permanent": false }
+    { "source": "/about/partnership", "destination": "/oakedfund", "permanent": false }
   ]
 }

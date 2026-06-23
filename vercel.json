@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/about/partnership", "destination": "/about/partnership.html" },
     { "source": "/case", "destination": "/case.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/model", "destination": "/model.html" },
